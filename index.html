@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upasana Pawar | Future Tech Portfolio</title>
+    <meta name="description" content="Personal portfolio of Upasana Pawar - Tech Enthusiast & Developer">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation-container">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+    <div class="glass-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="container nav-content">
+            <a href="#" class="logo">Upasana<span class="accent">.dev</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact" class="btn-sm">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-content"
+            style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: center;">
+
+            <!-- Left: Profile Photo -->
+            <div class="hero-visual fade-in-up" style="display: flex; justify-content: center; order: 1;">
+                <div class="profile-photo-container" style="position: relative; width: 350px; height: 350px;">
+                    <div class="neon-circle"
+                        style="position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--accent-purple); box-shadow: var(--shadow-glow);">
+                    </div>
+                    <div class="profile-img"
+                        style="width: 100%; height: 100%; border-radius: 50%; background: #222; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                        <img src="profile.jpg" alt="Upasana Pawar"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+                        <!-- Fallback Icon if image fails/user prefers -->
+                        <!-- <i class="fas fa-user-astronaut" style="font-size: 5rem; color: rgba(255,255,255,0.2);"></i> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Text Content -->
+            <div class="hero-text fade-in-up delay-1" style="order: 2; text-align: left;">
+                <h1 style="font-size: 52px; margin-bottom: 20px; font-weight: 700; line-height: 1.2;">
+                    <span class="gradient-text">Upasana Pawar</span>
+                </h1>
+
+                <h2 style="font-size: 24px; color: var(--text-secondary); margin-bottom: 25px; font-weight: 500;">
+                    Applied Computer Science & Artificial Intelligence Graduate
+                </h2>
+
+                <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 40px; max-width: 600px;">
+                    Building intelligent systems using <span style="color: var(--accent-glow);">AI</span>,
+                    <span style="color: var(--accent-glow);">Machine Learning</span>, and
+                    <span style="color: var(--accent-glow);">LLMs</span>
+                </p>
+
+                <div class="hero-btns" style="justify-content: flex-start;">
+                    <a href="#projects" class="btn btn-primary"
+                        style="background: var(--gradient-button); border: none; box-shadow: var(--shadow-glow);">
+                        View Projects <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary"
+                        style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
+                        Contact Me
+                    </a>
+                </div>
+
+                <div class="social-links" style="margin-top: 40px; justify-content: flex-start;">
+                    <a href="https://github.com/Upasana-Pawar" target="_blank" aria-label="GitHub"
+                        style="color: var(--text-secondary); font-size: 1.5rem; margin-right: 20px; transition: 0.3s;"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/upasanapawar" target="_blank" aria-label="LinkedIn"
+                        style="color: var(--text-secondary); font-size: 1.5rem; transition: 0.3s;"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+            <div class="about-minimal-text">
+                <p>
+                    I am a Master’s graduate in Applied Computer Science and Artificial Intelligence, focused on
+                    building practical, real-world AI solutions. I have hands-on experience in computer vision, prompt
+                    engineering, and AI-powered data analysis through academic research and industry internships. My
+                    goal is to turn AI models into reliable, scalable systems that improve efficiency, insight, and
+                    decision-making.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+
+            <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <!-- 1. AI & Machine Learning -->
+                <div class="skill-card glass">
+                    <div class="skill-header">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI & Machine Learning</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag mono-text">Machine Learning</span>
+                        <span class="skill-tag mono-text">Deep Learning</span>
+                        <span class="skill-tag mono-text">Computer Vision</span>
+                        <span class="skill-tag mono-text">Generative AI</span>
+                        <span class="skill-tag mono-text">LLMs</span>
+                        <span class="skill-tag mono-text">Prompt Engineering</span>
+                    </div>
+                </div>
+
+                <!-- 2. Programming -->
+                <div class="skill-card glass">
+                    <div class="skill-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Programming</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag mono-text">Python</span>
+                        <span class="skill-tag mono-text">Java</span>
+                        <span class="skill-tag mono-text">C</span>
+                        <span class="skill-tag mono-text">SQL</span>
+                        <span class="skill-tag mono-text">JavaScript</span>
+                    </div>
+                </div>
+
+                <!-- 3. AI & Automation Tools -->
+                <div class="skill-card glass">
+                    <div class="skill-header">
+                        <i class="fas fa-robot"></i>
+                        <h3>AI & Automation Tools</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag mono-text">OpenCV</span>
+                        <span class="skill-tag mono-text">MediaPipe</span>
+                        <span class="skill-tag mono-text">Scikit-learn</span>
+                        <span class="skill-tag mono-text">TensorFlow</span>
+                        <span class="skill-tag mono-text">LangChain</span>
+                        <span class="skill-tag mono-text">n8n</span>
+                    </div>
+                </div>
+
+                <!-- 4. Data & Cloud -->
+                <div class="skill-card glass">
+                    <div class="skill-header">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Data & Cloud</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag mono-text">EDA</span>
+                        <span class="skill-tag mono-text">Tableau</span>
+                        <span class="skill-tag mono-text">MySQL</span>
+                        <span class="skill-tag mono-text">Git</span>
+                        <span class="skill-tag mono-text">GitHub</span>
+                        <span class="skill-tag mono-text">Microsoft Azure (Fundamentals)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section">
+        <div class="container">
+            <h2 class="section-title">Internship <span class="gradient-text">Experience</span></h2>
+            <div class="projects-grid"> <!-- Reusing grid layout for consistency -->
+                <article class="project-card glass">
+                    <div class="project-content">
+                        <h3>Python Developer (Remote)</h3>
+                        <p class="role-meta">SkyBrisk | Nov 2025 - Dec 2025</p>
+                        <ul>
+                            <li>Completed certified internship focused on Python development and structured coding
+                                discipline.</li>
+                            <li>Contributed to small development tasks, documentation, and debugging workflows.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="project-card glass">
+                    <div class="project-content">
+                        <h3>AI-Powered Data Analysis Intern</h3>
+                        <p class="role-meta">Excelerate | Nov 2025 - Dec 2025</p>
+                        <ul>
+                            <li>Analyse datasets using Python and LLM-based pipelines to automate data cleaning,
+                                summarisation, anomaly detection, and insights generation.</li>
+                            <li>Work with AI-driven workflows to support business decisions and improve quality of
+                                enterprise data.</li>
+                            <li>Research and test AI tools for data processing, reporting, and automated dashboards.
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="project-card glass">
+                    <div class="project-content">
+                        <h3>Prompt Engineering Research Intern</h3>
+                        <p class="role-meta">Excelerate | Oct 2025 - Nov 2025</p>
+                        <ul>
+                            <li>Evaluated LLM-generated outputs and prompt designs for clarity, accuracy, and contextual
+                                reasoning.</li>
+                            <li>Exploring LangChain and AI workflow orchestration concepts for real-world automation.
+                            </li>
+                            <li>Supporting documentation and prototype testing for enterprise AI adoption.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <!-- 1. Hand Hygiene Scanner -->
+                <article class="project-card glass">
+                    <div class="project-content">
+                        <h3>🧠 Computer Vision–Assisted Hand Hygiene Scanner</h3>
+                        <p class="role-meta">MSc Dissertation</p>
+                        <p>Built a computer vision system using OpenCV and MediaPipe to detect and classify hand
+                            movements for hygiene compliance using machine learning.</p>
+                        <div class="tags">
+                            <span class="mono-text">OpenCV</span>
+                            <span class="mono-text">MediaPipe</span>
+                            <span class="mono-text">Machine Learning</span>
+                        </div>
+                        <a href="https://github.com/Upasana-Pawar/Hand-Gesture-Project" target="_blank" class="btn-sm"
+                            style="margin-top: 15px; display: inline-block; text-align: center;">View Code</a>
+                    </div>
+                </article>
+
+                <!-- 2. DesiFit -->
+                <article class="project-card glass">
+                    <div class="project-content">
+                        <h3>🥗 DesiFit — AI Meal & Fitness Planner</h3>
+                        <p class="role-meta">Google AI Agents Capstone</p>
+                        <p>Developed a multi-agent AI system that generates Indian-style meal plans, gym routines, and
+                            grocery lists using calorie and macro-based planning.</p>
+                        <div class="tags">
+                            <span class="mono-text">AI Agents</span>
+                            <span class="mono-text">Personalization</span>
+                            <span class="mono-text">Wellness</span>
+                        </div>
+                        <a href="https://github.com/Upasana-Pawar/desifit-agent" target="_blank" class="btn-sm"
+                            style="margin-top: 15px; display: inline-block; text-align: center;">View Code</a>
+                    </div>
+                </article>
+
+                <!-- 3. AI Workflow Automation -->
+                <article class="project-card glass">
+                    <div class="project-content">
+                        <h3>🤖 AI Workflow Automation</h3>
+                        <p class="role-meta"></p>
+                        <p>Created multi-agent AI pipelines using LangChain and n8n to automate reporting,
+                            summarization, and decision-making workflows.</p>
+                        <div class="tags">
+                            <span class="mono-text">LangChain</span>
+                            <span class="mono-text">n8n</span>
+                            <span class="mono-text">Automation</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. Local CLI Chatbot -->
+                <article class="project-card glass">
+                    <div class="project-content">
+                        <h3>🤖 Local CLI Chatbot with Hugging Face</h3>
+                        <p class="role-meta">Independent Project</p>
+                        <p>A command-line chatbot that runs locally using Hugging Face's transformer models, featuring
+                            conversation memory and clean output formatting.</p>
+                        <div class="tags">
+                            <span class="mono-text">Python</span>
+                            <span class="mono-text">Hugging Face</span>
+                            <span class="mono-text">Transformers</span>
+                            <span class="mono-text">CLI</span>
+                        </div>
+                        <a href="https://github.com/Upasana-Pawar/ChatBot" target="_blank" class="btn-sm"
+                            style="margin-top: 15px; display: inline-block; text-align: center;">View Code</a>
+                    </div>
+                </article>
+
+                <!-- 5. Expense Splitter -->
+                <article class="project-card glass">
+                    <div class="project-content">
+                        <h3>💸 Expense Splitter Web App</h3>
+                        <p class="role-meta"></p>
+                        <p>Full-stack web application using Node.js, JavaScript, HTML, CSS, and SQLite to manage shared
+                            expenses with real-time balances.</p>
+                        <div class="tags">
+                            <span class="mono-text">Node.js</span>
+                            <span class="mono-text">SQLite</span>
+                            <span class="mono-text">Full Stack</span>
+                        </div>
+                        <a href="https://github.com/Upasana-Pawar/Expense-Splitter" target="_blank" class="btn-sm"
+                            style="margin-top: 15px; display: inline-block; text-align: center;">View Code</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container contact-wrapper glass">
+            <div class="contact-info">
+                <h2>Let's Build the <span class="gradient-text">Future</span></h2>
+                <p>Have a project in mind or just want to chat about tech? Drop me a line.</p>
+
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <span>upasanapawar976@gmail.com</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Remote / Worldwide</span>
+                </div>
+            </div>
+
+            <form class="contact-form" action="https://formspree.io/f/mykkyjbb" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Upasana Pawar.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
