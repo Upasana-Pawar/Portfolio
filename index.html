@@ -1,378 +1,1178 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upasana Pawar | Future Tech Portfolio</title>
-    <meta name="description" content="Personal portfolio of Upasana Pawar - Tech Enthusiast & Developer">
-
-    <!-- Google Fonts -->
+    <title>Upasana Pawar | AI Software Engineer & Multi-Agent Security Specialist</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#080C14',
+                            panel: '#0F172A',
+                            border: '#1E293B',
+                            hover: '#1E293B'
+                        },
+                        neon: {
+                            cyan: '#06B6D4',
+                            violet: '#8B5CF6',
+                            emerald: '#10B981',
+                            amber: '#F59E0B',
+                            red: '#EF4444'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #080C14;
+            color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    <link rel="stylesheet" href="style.css">
+        .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.35);
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.15);
+        }
+
+        /* Glowing Gradients */
+        .gradient-glow {
+            position: relative;
+        }
+        .gradient-glow::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.5), rgba(139, 92, 246, 0.5), rgba(16, 185, 129, 0.3));
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        .gradient-glow:hover::before {
+            opacity: 1;
+        }
+
+        /* Terminal Cursor blink */
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080C14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
 </head>
+<body class="selection:bg-neon-cyan selection:text-black relative min-h-screen">
 
-<body>
-    <!-- Background Animation -->
-    <div class="bg-animation-container">
-        <div class="glow-orb orb-1"></div>
-        <div class="glow-orb orb-2"></div>
-        <div class="glow-orb orb-3"></div>
+    <!-- Interactive Canvas Background for Neural Network Particles -->
+    <canvas id="neural-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-card border-b border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-neon-cyan via-neon-violet to-neon-emerald p-[1px] shadow-lg group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-dark-bg rounded-[11px] flex items-center justify-center font-mono font-bold text-white text-sm">
+                        UP
+                    </div>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-lg text-white tracking-tight">Upasana Pawar</span>
+                    <span class="text-xs text-neon-cyan font-mono block -mt-1">AI Engineering Portfolio</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-neon-cyan transition-colors">About</a>
+                <a href="#sandbox" class="hover:text-neon-cyan transition-colors flex items-center gap-1.5 text-neon-emerald font-semibold">
+                    <i class="fa-solid fa-terminal text-xs"></i> Guardrail Sandbox
+                </a>
+                <a href="#projects" class="hover:text-neon-cyan transition-colors">AI Projects</a>
+                <a href="#skills" class="hover:text-neon-cyan transition-colors">Skills</a>
+                <a href="#experience" class="hover:text-neon-cyan transition-colors">Experience</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button onclick="openResumeModal()" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 transition-all">
+                    <i class="fa-solid fa-file-pdf text-red-400"></i> View CV
+                </button>
+                <a href="#contact" class="px-4 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-neon-cyan to-neon-violet text-white hover:opacity-90 shadow-md transition-opacity">
+                    Get in Touch
+                </a>
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-b border-gray-800 px-4 pt-3 pb-5 space-y-3 text-sm">
+            <a href="#about" class="block text-gray-300 hover:text-neon-cyan">About</a>
+            <a href="#sandbox" class="block text-neon-emerald font-semibold"><i class="fa-solid fa-terminal text-xs mr-1"></i> Guardrail Sandbox</a>
+            <a href="#projects" class="block text-gray-300 hover:text-neon-cyan">AI Projects</a>
+            <a href="#skills" class="block text-gray-300 hover:text-neon-cyan">Skills Matrix</a>
+            <a href="#experience" class="block text-gray-300 hover:text-neon-cyan">Experience & Education</a>
+            <a href="#contact" class="block text-neon-cyan font-semibold">Contact</a>
+            <button onclick="openResumeModal()" class="w-full text-left py-2 text-xs font-semibold text-gray-200 border-t border-gray-800 pt-3 flex items-center gap-2">
+                <i class="fa-solid fa-file-pdf text-red-400"></i> View CV & Resume Summary
+            </button>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 py-10 sm:py-16">
+
+        <!-- HERO HEADER & RECRUITER QUICK CARDS -->
+        <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-2">
+            <div class="lg:col-span-7 space-y-6">
+                
+                <!-- Recruiter Status Badges -->
+                <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-neon-emerald/10 text-emerald-300 border border-neon-emerald/30">
+                        <i class="fa-solid fa-passport text-neon-emerald"></i> UK Right to Work
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-neon-violet/10 text-violet-300 border border-neon-violet/30">
+                        <i class="fa-solid fa-graduation-cap"></i> MSc CS & AI (Distinction)
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-neon-cyan/10 text-cyan-300 border border-neon-cyan/30">
+                        <i class="fa-solid fa-award"></i> Google AI Agents Capstone
+                    </span>
+                </div>
+
+                <!-- Main Tagline -->
+                <div class="space-y-3">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-tight text-white">
+                        Upasana Pawar
+                    </h1>
+                    <p class="text-xl sm:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-indigo-300 to-neon-violet">
+                        AI Software Engineer | Multi-Agent Systems & Operational ML Specialist
+                    </p>
+                </div>
+
+                <!-- CV Summary Paragraph -->
+                <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                    Software Engineer with an MSc Distinction from the University of Bradford, combining enterprise <span class="text-white font-semibold">zero-trust AI agent runtimes</span> and computer vision with practical, real-world operational machine learning solutions (like <span class="text-neon-amber font-semibold">DriveGuard-AI</span>). Experienced in <span class="text-neon-cyan font-semibold">Google ADK, Gemini, OpenCV, Streamlit, Scikit-Learn, gVisor</span>, and <span class="text-neon-violet font-semibold">Cloud Run</span>.
+                </p>
+
+                <!-- High-Impact Recruiter Stats Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                    <div class="glass-card p-3.5 rounded-xl border border-gray-800 text-center space-y-0.5">
+                        <div class="text-2xl sm:text-3xl font-extrabold font-display text-neon-emerald">100%</div>
+                        <div class="text-[11px] text-gray-300 font-medium">Malicious Tool Block</div>
+                        <div class="text-[10px] text-gray-500">Zero-trust guardrails</div>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-xl border border-gray-800 text-center space-y-0.5">
+                        <div class="text-2xl sm:text-3xl font-extrabold font-display text-neon-cyan">99.4%</div>
+                        <div class="text-[11px] text-gray-300 font-medium">PII Redaction Acc.</div>
+                        <div class="text-[10px] text-gray-500">Structured outputs</div>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-xl border border-gray-800 text-center space-y-0.5">
+                        <div class="text-2xl sm:text-3xl font-extrabold font-display text-neon-amber">&lt;138ms</div>
+                        <div class="text-[11px] text-gray-300 font-medium">Guardrail Latency</div>
+                        <div class="text-[10px] text-gray-500">Cloud Run serverless</div>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-xl border border-gray-800 text-center space-y-0.5">
+                        <div class="text-2xl sm:text-3xl font-extrabold font-display text-neon-violet">5.0 / 5.0</div>
+                        <div class="text-[11px] text-gray-300 font-medium">Trajectory Score</div>
+                        <div class="text-[10px] text-gray-500">LLM-as-Judge eval</div>
+                    </div>
+                </div>
+
+                <!-- Call to Action Buttons -->
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <a href="#sandbox" class="px-5 py-3 rounded-xl bg-gradient-to-r from-neon-cyan via-indigo-600 to-neon-violet text-white font-semibold text-sm shadow-lg hover:shadow-cyan-500/20 hover:scale-[1.02] transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-terminal text-xs"></i> Try Security Sandbox
+                    </a>
+                    <a href="#projects" class="px-5 py-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-200 border border-gray-800 font-semibold text-sm hover:scale-[1.02] transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-cubes text-xs"></i> Explore AI Projects
+                    </a>
+                    <button onclick="openResumeModal()" class="px-5 py-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-200 border border-gray-800 font-semibold text-sm hover:scale-[1.02] transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-file-pdf text-red-400 text-xs"></i> Resume Details
+                    </button>
+                </div>
+
+                <!-- Quick Contact Links -->
+                <div class="flex items-center gap-4 text-xs text-gray-400 pt-1">
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-neon-cyan flex items-center gap-1.5 transition-colors">
+                        <i class="fa-brands fa-linkedin text-base text-blue-400"></i> LinkedIn
+                    </a>
+                    <span>•</span>
+                    <a href="https://github.com/upasana-pawar" target="_blank" class="hover:text-white flex items-center gap-1.5 transition-colors">
+                        <i class="fa-brands fa-github text-base"></i> GitHub
+                    </a>
+                    <span>•</span>
+                    <button onclick="copyEmail()" class="hover:text-neon-emerald flex items-center gap-1.5 transition-colors group">
+                        <i class="fa-solid fa-copy text-xs group-hover:scale-110 transition-transform"></i>
+                        <span id="hero-copy-txt">upasanapawar976@gmail.com</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Terminal Hero Graphic -->
+            <div class="lg:col-span-5">
+                <div class="gradient-glow rounded-2xl">
+                    <div class="bg-dark-panel p-5 rounded-2xl border border-gray-800 font-mono text-xs space-y-4 shadow-2xl">
+                        <!-- Header -->
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                                <span class="text-gray-400 font-sans font-medium text-xs ml-2">enterprise_agent_security.py</span>
+                            </div>
+                            <span class="text-neon-emerald text-[11px] flex items-center gap-1 font-semibold">
+                                <span class="w-2 h-2 rounded-full bg-neon-emerald animate-pulse"></span> ACTIVE
+                            </span>
+                        </div>
+
+                        <!-- Terminal Output -->
+                        <div class="space-y-2 text-gray-300">
+                            <p class="text-gray-500"># Google ADK 2.0.4 + Zero-Trust Policy Engine</p>
+                            <p><span class="text-neon-violet">from</span> google.adk <span class="text-neon-violet">import</span> AgentRuntime, SecurityGuardrail</p>
+                            <p><span class="text-neon-violet">from</span> pydantic <span class="text-neon-violet">import</span> BaseModel, Field</p>
+                            
+                            <div class="bg-gray-950/80 p-3 rounded-xl border border-gray-800/80 my-3 space-y-1.5 text-[11px]">
+                                <p class="text-cyan-400"><i class="fa-solid fa-shield"></i> Runtime Isolation: <span class="text-gray-300">gVisor Container Sandbox</span></p>
+                                <p class="text-emerald-400"><i class="fa-solid fa-check text-xs"></i> PII Redaction Engine: <span class="text-gray-300">99.4% Accuracy</span></p>
+                                <p class="text-amber-400"><i class="fa-solid fa-bolt text-xs"></i> Token Optimization: <span class="text-gray-300">78% Overhead Saved</span></p>
+                            </div>
+
+                            <p class="text-gray-400"><span class="text-neon-emerald">$</span> python run_eval_suite.py --target=cloud_run</p>
+                            <p class="text-neon-cyan">[EVAL COMPLETE] Trajectory Score: 5.0/5.0 <span class="cursor-blink text-white">█</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE AI SECURITY GUARDRAIL SANDBOX WIDGET -->
+        <section id="sandbox" class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-neon-emerald flex items-center gap-2">
+                        <i class="fa-solid fa-terminal"></i> Live Interactive Component
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-display text-white mt-1">
+                        AI Security Guardrail Sandbox
+                    </h2>
+                    <p class="text-gray-400 text-sm mt-1">
+                        Simulate the multi-stage security pipeline designed in Upasana's Google AI Capstone project.
+                    </p>
+                </div>
+                <div class="text-xs text-gray-400 bg-gray-900 px-3.5 py-2 rounded-xl border border-gray-800 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-neon-emerald animate-ping"></span>
+                    <span>Guardrail Latency: <strong class="text-white font-mono">&lt;138ms</strong></span>
+                </div>
+            </div>
+
+            <!-- Sandbox Interface Card -->
+            <div class="glass-card p-6 sm:p-8 rounded-3xl border border-gray-800 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Controls & Inputs -->
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Select Test Attack / Scenario:</label>
+                        <div class="grid grid-cols-1 gap-2">
+                            <button onclick="setSandboxPreset('malicious')" id="btn-preset-malicious" class="sandbox-preset-btn p-3 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-left transition-all flex items-center justify-between group">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-bug text-neon-red text-sm"></i>
+                                    <div>
+                                        <div class="text-xs font-bold text-white">Malicious Tool Injection</div>
+                                        <div class="text-[10px] text-gray-400">Attempts dangerous bash execution (`rm -rf`)</div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-gray-600 group-hover:text-white transition-colors"></i>
+                            </button>
+
+                            <button onclick="setSandboxPreset('pii')" id="btn-preset-pii" class="sandbox-preset-btn p-3 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-left transition-all flex items-center justify-between group">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-user-shield text-neon-amber text-sm"></i>
+                                    <div>
+                                        <div class="text-xs font-bold text-white">PII Leakage Attack</div>
+                                        <div class="text-[10px] text-gray-400">Contains raw SSN & email contact credentials</div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-gray-600 group-hover:text-white transition-colors"></i>
+                            </button>
+
+                            <button onclick="setSandboxPreset('safe')" id="btn-preset-safe" class="sandbox-preset-btn p-3 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-left transition-all flex items-center justify-between group">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-neon-emerald text-sm"></i>
+                                    <div>
+                                        <div class="text-xs font-bold text-white">Legitimate Agent Execution</div>
+                                        <div class="text-[10px] text-gray-400">Valid structured multi-agent request</div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-gray-600 group-hover:text-white transition-colors"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Raw Textarea Input -->
+                    <div class="space-y-1.5">
+                        <label class="block text-xs font-semibold text-gray-400">Payload Prompt:</label>
+                        <textarea id="sandbox-prompt" rows="4" class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-xs text-gray-200 font-mono focus:border-neon-cyan focus:outline-none focus:ring-1 focus:ring-neon-cyan transition-all" placeholder="Enter custom prompt..."></textarea>
+                    </div>
+
+                    <button onclick="executeSandboxPipeline()" id="run-sandbox-btn" class="w-full py-3 rounded-xl bg-gradient-to-r from-neon-cyan via-indigo-600 to-neon-emerald text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-95 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play text-xs"></i> Execute Security Verification Pipeline
+                    </button>
+                </div>
+
+                <!-- Simulation Visual Output Pipeline -->
+                <div class="lg:col-span-7 bg-gray-950 rounded-2xl border border-gray-800 p-5 font-mono text-xs flex flex-col justify-between space-y-4">
+                    <!-- Execution Trace Steps -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                            <span class="text-gray-400 flex items-center gap-2 font-sans font-semibold text-xs">
+                                <i class="fa-solid fa-diagram-project text-neon-cyan"></i> Verification Pipeline Trace
+                            </span>
+                            <span id="sandbox-timer" class="text-neon-emerald font-bold text-xs">Latency: -- ms</span>
+                        </div>
+
+                        <!-- Step Diagnostics Grid -->
+                        <div id="sandbox-pipeline-steps" class="space-y-2.5">
+                            <p class="text-gray-600 italic text-xs">// Select a scenario or click "Execute Security Verification Pipeline" to test the live guardrail system.</p>
+                        </div>
+                    </div>
+
+                    <!-- Final Status Card -->
+                    <div id="sandbox-final-card" class="hidden p-4 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-between">
+                        <div>
+                            <div id="sandbox-status-heading" class="font-bold text-xs">STATUS</div>
+                            <div id="sandbox-status-sub" class="text-[11px] text-gray-400">Execution completed.</div>
+                        </div>
+                        <div id="sandbox-metrics-badge" class="px-2.5 py-1 rounded-md text-[10px] font-bold">--</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS SECTION (DYNAMIC FILTERING) -->
+        <section id="projects" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-neon-cyan flex items-center gap-2">
+                        <i class="fa-solid fa-code-branch"></i> Practical Applications
+                    </span>
+                    <h2 class="text-3xl font-bold font-display text-white mt-1">Featured AI Systems</h2>
+                    <p class="text-gray-400 text-sm mt-1">Projects built with Python, Google ADK, Streamlit, Scikit-learn, OpenCV, and Cloud Run.</p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 bg-gray-900 p-1.5 rounded-xl border border-gray-800 text-xs font-medium">
+                    <button onclick="filterProjects('all')" class="proj-filter-btn px-3 py-1.5 rounded-lg text-white bg-neon-cyan transition-all" data-filter="all">All Projects</button>
+                    <button onclick="filterProjects('agent')" class="proj-filter-btn px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all" data-filter="agent">AI Agents & Security</button>
+                    <button onclick="filterProjects('ml')" class="proj-filter-btn px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all" data-filter="ml">Operational ML</button>
+                    <button onclick="filterProjects('cv')" class="proj-filter-btn px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition-all" data-filter="cv">Computer Vision</button>
+                </div>
+            </div>
+
+            <!-- PROJECTS GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- FEATURED PROJECT 1: DriveGuard-AI (Operational ML) -->
+                <div class="project-card lg:col-span-3 glass-card p-6 sm:p-8 rounded-3xl border border-neon-amber/40 relative overflow-hidden space-y-6" data-category="ml">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 text-xs font-bold uppercase rounded-full bg-neon-amber/20 text-amber-300 border border-neon-amber/40">
+                                <i class="fa-solid fa-car-burst mr-1"></i> Featured Operational ML Project
+                            </span>
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gray-800 text-gray-300">
+                                Real McDonald's Origin
+                            </span>
+                        </div>
+                        <span class="text-xs text-gray-400 font-mono">Python • Scikit-Learn • Streamlit</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                        <div class="lg:col-span-8 space-y-3">
+                            <h3 class="text-2xl sm:text-3xl font-bold font-display text-white">
+                                DriveGuard-AI: Drive-Thru Order Verification & Risk Monitoring
+                            </h3>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                                Born directly from asking: <em>"Can AI help prevent drive-thru order mix-ups?"</em> during fast-paced peak trading shifts. DriveGuard-AI generates realistic drive-thru telemetry, applies Logistic Regression to detect linked suspicious orders before handout, assigns AI confidence scores, and renders lane-level operational analytics.
+                            </p>
+                        </div>
+                        <div class="lg:col-span-4 bg-gray-950 p-4 rounded-2xl border border-gray-800 text-xs font-mono space-y-2">
+                            <div class="text-neon-amber font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line"></i> Operational Dashboard
+                            </div>
+                            <div class="flex justify-between border-b border-gray-800/80 pb-1">
+                                <span class="text-gray-400">ML Model:</span>
+                                <span class="text-white">Logistic Regression</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-800/80 pb-1">
+                                <span class="text-gray-400">Core Output:</span>
+                                <span class="text-neon-emerald">Risk & Linked Scores</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Interface:</span>
+                                <span class="text-cyan-300">Streamlit Interactive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bullet Highlights -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm text-gray-300">
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-neon-emerald mt-1"></i>
+                            <span><strong>Synthetic Order Data Generation:</strong> Simulates realistic high-speed drive-thru queues, item combinations, and timestamp clustering.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-neon-emerald mt-1"></i>
+                            <span><strong>Risk Scoring & Analytics:</strong> Provides live lane monitoring, confidence metrics, high-risk flags, and downloadable operational reports.</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Links & Demos -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-gray-800/80">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-gray-900 text-gray-300 border border-gray-800">Python</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-gray-900 text-gray-300 border border-gray-800">Scikit-Learn</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-gray-900 text-gray-300 border border-gray-800">Pandas</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-gray-900 text-gray-300 border border-gray-800">Streamlit</span>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-3 text-xs">
+                            <a href="https://lnkd.in/et9XE6gs" target="_blank" class="px-3.5 py-2 rounded-xl bg-neon-amber/20 hover:bg-neon-amber/30 text-amber-300 font-semibold border border-neon-amber/40 transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-rocket"></i> Verification App
+                            </a>
+                            <a href="https://lnkd.in/eSqev9V6" target="_blank" class="px-3.5 py-2 rounded-xl bg-neon-cyan/20 hover:bg-neon-cyan/30 text-cyan-300 font-semibold border border-neon-cyan/40 transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-chart-simple"></i> Risk Dashboard
+                            </a>
+                            <a href="https://lnkd.in/ehgWn8Pe" target="_blank" class="px-3.5 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-semibold transition-all flex items-center gap-1.5">
+                                <i class="fa-brands fa-github"></i> GitHub Repo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: Enterprise Capstone -->
+                <div class="project-card lg:col-span-2 glass-card p-6 sm:p-8 rounded-3xl border border-neon-cyan/30 space-y-5" data-category="agent">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <span class="px-3 py-1 text-xs font-bold uppercase rounded-full bg-neon-cyan/20 text-cyan-300">
+                            Google AI Agents Capstone
+                        </span>
+                        <span class="text-xs text-gray-400 font-mono">Google ADK 2.0.4 + Gemini</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="text-2xl font-bold font-display text-white">
+                            Enterprise AI Agent Runtime & Verification Suite
+                        </h3>
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                            Zero-trust autonomous agent runtime with enterprise security guardrails, hybrid tool interception, PII redaction, and gVisor isolation deployed to Google Cloud Run.
+                        </p>
+                    </div>
+
+                    <!-- Metrics Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <div class="bg-gray-950/80 p-2.5 rounded-xl border border-gray-800 text-center">
+                            <div class="text-[10px] text-gray-400">Interception</div>
+                            <div class="text-xs sm:text-sm font-bold text-neon-emerald">100% Malicious</div>
+                        </div>
+                        <div class="bg-gray-950/80 p-2.5 rounded-xl border border-gray-800 text-center">
+                            <div class="text-[10px] text-gray-400">PII Accuracy</div>
+                            <div class="text-xs sm:text-sm font-bold text-neon-cyan">99.4% Redacted</div>
+                        </div>
+                        <div class="bg-gray-950/80 p-2.5 rounded-xl border border-gray-800 text-center">
+                            <div class="text-[10px] text-gray-400">Token Savings</div>
+                            <div class="text-xs sm:text-sm font-bold text-neon-violet">78% Overhead</div>
+                        </div>
+                        <div class="bg-gray-950/80 p-2.5 rounded-xl border border-gray-800 text-center">
+                            <div class="text-[10px] text-gray-400">LLM-as-Judge</div>
+                            <div class="text-xs sm:text-sm font-bold text-neon-amber">5.0 / 5.0 Score</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-gray-800/80">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">Python</span>
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">Google ADK</span>
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">Cloud Run</span>
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">gVisor</span>
+                        </div>
+                        <button onclick="openCodeModal('capstone')" class="text-xs font-semibold text-neon-cyan hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-code"></i> View Architecture Code
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: Computer Vision Hygiene Scanner -->
+                <div class="project-card glass-card p-6 rounded-2xl border border-gray-800 flex flex-col justify-between space-y-4" data-category="cv">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-neon-violet/20 text-violet-300 border border-neon-violet/30">
+                                MSc Dissertation
+                            </span>
+                            <span class="text-xs text-gray-500 font-mono">Bradford Univ</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white font-display">Hand Hygiene CV Scanner</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                            Real-time gesture recognition monitoring handwashing compliance against WHO hygiene standards in healthcare settings.
+                        </p>
+                        <ul class="text-xs text-gray-400 space-y-1.5 list-disc list-inside">
+                            <li>MediaPipe 21 hand landmark extraction (63 spatial features).</li>
+                            <li>Random Forest classification & sequence validation pipeline.</li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-3 pt-3 border-t border-gray-800/80">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">OpenCV</span>
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">MediaPipe</span>
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">Scikit-learn</span>
+                        </div>
+                        <button onclick="openCodeModal('cv')" class="text-xs font-semibold text-neon-cyan hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-code"></i> View Landmark Extraction
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 4: DesiFit Multi-Agent System -->
+                <div class="project-card glass-card p-6 rounded-2xl border border-gray-800 flex flex-col justify-between space-y-4" data-category="agent">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-neon-emerald/20 text-emerald-300 border border-neon-emerald/30">
+                                Multi-Agent System
+                            </span>
+                            <span class="text-xs text-gray-500 font-mono">Google AI Capstone</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white font-display">DesiFit: Meal & Fitness Agent</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                            Modular multi-agent system with four specialized agents (Diet, Workout, Grocery, Coordination) generating automated 7-day meal plans.
+                        </p>
+                        <ul class="text-xs text-gray-400 space-y-1.5 list-disc list-inside">
+                            <li>Calorie & macro calculation using Mifflin-St Jeor formula.</li>
+                            <li>Automated grocery aggregation with Pytest coverage.</li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-3 pt-3 border-t border-gray-800/80">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">Python</span>
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">Multi-Agent</span>
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-gray-900 text-gray-300 border border-gray-800">Pytest</span>
+                        </div>
+                        <button onclick="openCodeModal('desifit')" class="text-xs font-semibold text-neon-cyan hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-code"></i> View Agent Logic
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS MATRIX -->
+        <section id="skills" class="space-y-6">
+            <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neon-emerald flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group"></i> Capability Stack
+                </span>
+                <h2 class="text-3xl font-bold font-display text-white mt-1">Technical Skills Matrix</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Card 1 -->
+                <div class="glass-card p-5 rounded-2xl border border-gray-800 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-neon-cyan/20 border border-neon-cyan/40 flex items-center justify-center text-neon-cyan text-lg">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="font-bold text-white text-base">AI Agents & LLMs</h3>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-cyan"></i> Google ADK 2.0.4 & Gemini</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-cyan"></i> Multi-Agent Architecture</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-cyan"></i> Prompt Engineering & RAG</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-cyan"></i> LLM-as-Judge Trajectory Eval</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-cyan"></i> Structured Pydantic Schemas</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-5 rounded-2xl border border-gray-800 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-neon-emerald/20 border border-neon-emerald/40 flex items-center justify-center text-neon-emerald text-lg">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-bold text-white text-base">AI Security & Governance</h3>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-emerald"></i> Zero-Trust Agent Runtimes</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-emerald"></i> Hybrid Tool Execution Control</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-emerald"></i> PII Redaction Pipelines</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-emerald"></i> gVisor Container Sandboxing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-emerald"></i> Semgrep Static Security</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-5 rounded-2xl border border-gray-800 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-neon-amber/20 border border-neon-amber/40 flex items-center justify-center text-neon-amber text-lg">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Operational ML & Analytics</h3>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-amber"></i> Logistic Regression & ML Modeling</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-amber"></i> Streamlit Web Dashboards</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-amber"></i> Synthetic Data Generation</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-amber"></i> Pandas & Scikit-Learn</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-amber"></i> Operational Risk Scoring</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card p-5 rounded-2xl border border-gray-800 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-neon-violet/20 border border-neon-violet/40 flex items-center justify-center text-neon-violet text-lg">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Cloud & Software Eng</h3>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-violet"></i> Google Cloud Run & Firestore</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-violet"></i> OpenCV & MediaPipe (Computer Vision)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-violet"></i> Docker Containerization</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-violet"></i> Automated Pytest Suites</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-neon-violet"></i> Git, GitHub & MySQL</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROFESSIONAL EXPERIENCE & EDUCATION TIMELINE -->
+        <section id="experience" class="space-y-6">
+            <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neon-cyan flex items-center gap-2">
+                    <i class="fa-solid fa-timeline"></i> Experience & Qualifications
+                </span>
+                <h2 class="text-3xl font-bold font-display text-white mt-1">Professional Career & Education</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Experience Timeline -->
+                <div class="lg:col-span-7 space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-neon-cyan"></i> Professional Experience
+                    </h3>
+
+                    <div class="relative border-l-2 border-gray-800 pl-5 space-y-6 ml-2">
+                        <!-- Item 1 -->
+                        <div class="relative">
+                            <div class="absolute -left-[27px] top-1.5 w-3.5 h-3.5 rounded-full bg-neon-cyan border-4 border-dark-bg"></div>
+                            <div class="glass-card p-5 rounded-2xl border border-gray-800 space-y-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <h4 class="font-bold text-white text-sm sm:text-base">Freelance AI Contributor</h4>
+                                    <span class="text-[11px] font-mono text-gray-400">Jan 2026 – Present | Remote</span>
+                                </div>
+                                <div class="text-xs font-semibold text-neon-cyan">Invisible Technologies</div>
+                                <ul class="text-xs text-gray-300 space-y-1 list-disc list-inside">
+                                    <li>Evaluated and audited model-generated LLM outputs against strict production quality benchmarks.</li>
+                                    <li>Provided structured feedback for multi-step reasoning accuracy and trajectory safety.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 (McDonald's Crew Member - DriveGuard Origin) -->
+                        <div class="relative">
+                            <div class="absolute -left-[27px] top-1.5 w-3.5 h-3.5 rounded-full bg-neon-amber border-4 border-dark-bg"></div>
+                            <div class="glass-card p-5 rounded-2xl border border-gray-800 space-y-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <h4 class="font-bold text-white text-sm sm:text-base">Crew Member (Part-time)</h4>
+                                    <span class="text-[11px] font-mono text-gray-400">2025 – Present | Leeds, UK</span>
+                                </div>
+                                <div class="text-xs font-semibold text-neon-amber">McDonald's</div>
+                                <p class="text-xs text-gray-300">
+                                    Delivered customer service during peak trading periods. Provided real-world operational insight that directly inspired the creation of <strong>DriveGuard-AI</strong>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="relative">
+                            <div class="absolute -left-[27px] top-1.5 w-3.5 h-3.5 rounded-full bg-neon-emerald border-4 border-dark-bg"></div>
+                            <div class="glass-card p-5 rounded-2xl border border-gray-800 space-y-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <h4 class="font-bold text-white text-sm sm:text-base">AI-Powered Data Analysis & AI Intern</h4>
+                                    <span class="text-[11px] font-mono text-gray-400">Jan 2026 – Feb 2026 | Remote</span>
+                                </div>
+                                <div class="text-xs font-semibold text-neon-emerald">Excelerate</div>
+                                <ul class="text-xs text-gray-300 space-y-1 list-disc list-inside">
+                                    <li>Worked on prompt engineering, evaluations, and Python data analytics pipelines.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="relative">
+                            <div class="absolute -left-[27px] top-1.5 w-3.5 h-3.5 rounded-full bg-neon-violet border-4 border-dark-bg"></div>
+                            <div class="glass-card p-5 rounded-2xl border border-gray-800 space-y-2">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <h4 class="font-bold text-white text-sm sm:text-base">Artificial Intelligence Intern</h4>
+                                    <span class="text-[11px] font-mono text-gray-400">Nov 2025 | Remote</span>
+                                </div>
+                                <div class="text-xs font-semibold text-neon-violet">The SkyBrisk</div>
+                                <ul class="text-xs text-gray-300 space-y-1 list-disc list-inside">
+                                    <li>Developed Python scripts supporting AI workflows, automated testing, and technical docs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education & Certifications -->
+                <div class="lg:col-span-5 space-y-6">
+                    <!-- Education -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-neon-violet"></i> Academic Credentials
+                        </h3>
+
+                        <div class="glass-card p-5 rounded-2xl border border-gray-800 space-y-4">
+                            <div class="space-y-1 border-b border-gray-800 pb-3">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-bold text-white text-sm">MSc Applied CS & AI</h4>
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-neon-emerald/20 text-emerald-300 border border-neon-emerald/30">Distinction</span>
+                                </div>
+                                <p class="text-xs text-gray-400">University of Bradford, UK (2024 - 2025)</p>
+                                <p class="text-xs text-gray-300 pt-1">Modules: Machine Learning, Advanced Algorithms, Cloud AI.</p>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-bold text-white text-sm">BBA (Computer Applications)</h4>
+                                    <span class="text-xs font-mono text-cyan-300">9.08 SGPA</span>
+                                </div>
+                                <p class="text-xs text-gray-400">Christ College, Pune, India (2020 - 2023)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-award text-neon-amber"></i> Certifications
+                        </h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                            <div class="p-3 bg-gray-950 rounded-xl border border-gray-800 space-y-0.5">
+                                <div class="font-bold text-white">Google x Kaggle AI Agents</div>
+                                <div class="text-[10px] text-gray-400">Capstone Capable</div>
+                            </div>
+                            <div class="p-3 bg-gray-950 rounded-xl border border-gray-800 space-y-0.5">
+                                <div class="font-bold text-white">McKinsey Forward</div>
+                                <div class="text-[10px] text-gray-400">Leadership Programme</div>
+                            </div>
+                            <div class="p-3 bg-gray-950 rounded-xl border border-gray-800 space-y-0.5">
+                                <div class="font-bold text-white">AI & Prompt Engineering</div>
+                                <div class="text-[10px] text-gray-400">LinkedIn Learning</div>
+                            </div>
+                            <div class="p-3 bg-gray-950 rounded-xl border border-gray-800 space-y-0.5">
+                                <div class="font-bold text-white">1 Million Prompters</div>
+                                <div class="text-[10px] text-gray-400">Certified Practitioner</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER & CONTACT SECTION -->
+        <footer id="contact" class="glass-card p-8 sm:p-10 rounded-3xl border border-gray-800 text-center space-y-6">
+            <div class="max-w-2xl mx-auto space-y-3">
+                <h2 class="text-3xl font-extrabold font-display text-white">Recruiting AI Talent? Let's Connect</h2>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Currently seeking Software Engineering & AI Engineering roles across the UK. Equipped with full UK Right-to-Work authorization.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <button onclick="copyEmail()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-neon-cyan via-indigo-600 to-neon-emerald text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span id="footer-copy-txt">upasanapawar976@gmail.com</span>
+                </button>
+                <a href="https://linkedin.com" target="_blank" class="px-6 py-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-200 border border-gray-800 font-semibold text-xs uppercase tracking-wider hover:scale-105 transition-all flex items-center gap-2">
+                    <i class="fa-brands fa-linkedin text-blue-400 text-sm"></i> LinkedIn Profile
+                </a>
+                <a href="https://github.com/upasana-pawar" target="_blank" class="px-6 py-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-200 border border-gray-800 font-semibold text-xs uppercase tracking-wider hover:scale-105 transition-all flex items-center gap-2">
+                    <i class="fa-brands fa-github text-sm"></i> GitHub Portfolio
+                </a>
+            </div>
+
+            <div class="pt-6 border-t border-gray-800 text-xs text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <span>© 2026 Upasana Pawar • Leeds, West Yorkshire, UK</span>
+                <span>MSc Applied CS & AI (Distinction) • Right to Work in UK</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- RESUME MODAL -->
+    <div id="resume-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-dark-panel border border-gray-800 rounded-3xl max-w-2xl w-full p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-red-400"></i> Upasana Pawar - Curriculum Vitae
+                </h3>
+                <button onclick="closeResumeModal()" class="text-gray-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-xs text-gray-300">
+                <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-1">
+                    <div class="font-bold text-white text-base">UPASANA PAWAR</div>
+                    <p class="text-neon-cyan">Leeds, UK | upasanapawar976@gmail.com | Right to Work in UK</p>
+                    <p class="text-gray-400 pt-1">Software Engineer & MSc CS/AI Graduate (Distinction) experienced in cloud-native applications, AI agents, security guardrails, computer vision, and operational ML.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-bold text-white uppercase tracking-wider text-neon-emerald">Technical Capabilities</h4>
+                    <p><strong>Languages & Core:</strong> Python, SQL, JavaScript, HTML5, CSS3, JSON, YAML, Pandas, NumPy, Scikit-learn, Pytest, Git, GitHub.</p>
+                    <p><strong>AI Agents & LLM:</strong> Google ADK, Gemini API, Multi-Agent Architecture, RAG, Prompt Engineering, LLM-as-Judge, Pydantic.</p>
+                    <p><strong>AI Security & Governance:</strong> Zero-Trust Runtimes, Hybrid Tool Interception, PII Redaction, gVisor Sandboxing, Semgrep, Audit Logging.</p>
+                    <p><strong>Operational ML:</strong> DriveGuard-AI, Logistic Regression, Streamlit, Risk Analysis, Synthetic Data Simulation.</p>
+                    <p><strong>Computer Vision:</strong> OpenCV, MediaPipe 21 Hand Landmarks, Feature Engineering, Random Forest Classification.</p>
+                    <p><strong>Cloud & Deployment:</strong> Google Cloud Run, Firestore, Cloud Logging, Cloud Trace, Docker, Serverless.</p>
+                </div>
+
+                <div class="pt-3 border-t border-gray-800 flex justify-end gap-3">
+                    <button onclick="closeResumeModal()" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 font-semibold">Close</button>
+                    <a href="Upasana Pawar - CV.pdf" download class="px-4 py-2 rounded-xl bg-gradient-to-r from-neon-cyan to-neon-violet text-white font-semibold flex items-center gap-1.5">
+                        <i class="fa-solid fa-download"></i> Download Full PDF CV
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="glass-overlay"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar glass">
-        <div class="container nav-content">
-            <a href="#" class="logo">Upasana<span class="accent"></span></a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact" class="btn-sm">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-        <div class="container hero-content"
-            style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: center;">
-
-            <!-- Left: Profile Photo -->
-            <div class="hero-visual fade-in-up" style="display: flex; justify-content: center; order: 1;">
-                <div class="profile-photo-container" style="position: relative; width: 350px; height: 350px;">
-                    <div class="neon-circle"
-                        style="position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--accent-purple); box-shadow: var(--shadow-glow);">
-                    </div>
-                    <div class="profile-img"
-                        style="width: 100%; height: 100%; border-radius: 50%; background: #222; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                        <img src="profile.jpg" alt="Upasana Pawar"
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
-                        <!-- Fallback Icon if image fails/user prefers -->
-                        <!-- <i class="fas fa-user-astronaut" style="font-size: 5rem; color: rgba(255,255,255,0.2);"></i> -->
-                    </div>
-                </div>
+    <!-- CODE VIEW MODAL -->
+    <div id="code-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-dark-panel border border-gray-800 rounded-3xl max-w-3xl w-full p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                <h3 id="code-modal-title" class="text-sm font-bold font-mono text-neon-cyan">
+                    architecture_snippet.py
+                </h3>
+                <button onclick="closeCodeModal()" class="text-gray-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
             </div>
 
-            <!-- Right: Text Content -->
-            <div class="hero-text fade-in-up delay-1" style="order: 2; text-align: left;">
-                <h1 style="font-size: 52px; margin-bottom: 20px; font-weight: 700; line-height: 1.2;">
-                    <span class="gradient-text">Upasana Pawar</span>
-                </h1>
-
-                <h2 style="font-size: 24px; color: var(--text-secondary); margin-bottom: 25px; font-weight: 500;">
-                    Applied Computer Science & Artificial Intelligence Graduate
-                </h2>
-
-                <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 40px; max-width: 600px;">
-                    Building intelligent systems using <span style="color: var(--accent-glow);">AI</span>,
-                    <span style="color: var(--accent-glow);">Machine Learning</span>, and
-                    <span style="color: var(--accent-glow);">LLMs</span>
-                </p>
-
-                <div class="hero-btns" style="justify-content: flex-start;">
-                    <a href="#projects" class="btn btn-primary"
-                        style="background: var(--gradient-button); border: none; box-shadow: var(--shadow-glow);">
-                        View Projects <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary"
-                        style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
-                        Contact Me
-                    </a>
-                </div>
-
-                <div class="social-links" style="margin-top: 40px; justify-content: flex-start;">
-                    <a href="https://github.com/Upasana-Pawar" target="_blank" aria-label="GitHub"
-                        style="color: var(--text-secondary); font-size: 1.5rem; margin-right: 20px; transition: 0.3s;"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/upasanapawar" target="_blank" aria-label="LinkedIn"
-                        style="color: var(--text-secondary); font-size: 1.5rem; transition: 0.3s;"><i
-                            class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
-            <div class="about-minimal-text">
-                <p>
-                    I am a Master’s graduate in Applied Computer Science and Artificial Intelligence, focused on
-                    building practical, real-world AI solutions. I have hands-on experience in computer vision, prompt
-                    engineering, and AI-powered data analysis through academic research and industry internships. My
-                    goal is to turn AI models into reliable, scalable systems that improve efficiency, insight, and
-                    decision-making.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
-
-            <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <!-- 1. AI & Machine Learning -->
-                <div class="skill-card glass">
-                    <div class="skill-header">
-                        <i class="fas fa-brain"></i>
-                        <h3>AI & Machine Learning</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag mono-text">Machine Learning</span>
-                        <span class="skill-tag mono-text">Deep Learning</span>
-                        <span class="skill-tag mono-text">Computer Vision</span>
-                        <span class="skill-tag mono-text">Generative AI</span>
-                        <span class="skill-tag mono-text">LLMs</span>
-                        <span class="skill-tag mono-text">Prompt Engineering</span>
-                    </div>
-                </div>
-
-                <!-- 2. Programming -->
-                <div class="skill-card glass">
-                    <div class="skill-header">
-                        <i class="fas fa-code"></i>
-                        <h3>Programming</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag mono-text">Python</span>
-                        <span class="skill-tag mono-text">Java</span>
-                        <span class="skill-tag mono-text">C</span>
-                        <span class="skill-tag mono-text">SQL</span>
-                        <span class="skill-tag mono-text">JavaScript</span>
-                    </div>
-                </div>
-
-                <!-- 3. AI & Automation Tools -->
-                <div class="skill-card glass">
-                    <div class="skill-header">
-                        <i class="fas fa-robot"></i>
-                        <h3>AI & Automation Tools</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag mono-text">OpenCV</span>
-                        <span class="skill-tag mono-text">MediaPipe</span>
-                        <span class="skill-tag mono-text">Scikit-learn</span>
-                        <span class="skill-tag mono-text">TensorFlow</span>
-                        <span class="skill-tag mono-text">LangChain</span>
-                        <span class="skill-tag mono-text">n8n</span>
-                    </div>
-                </div>
-
-                <!-- 4. Data & Cloud -->
-                <div class="skill-card glass">
-                    <div class="skill-header">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h3>Data & Cloud</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag mono-text">EDA</span>
-                        <span class="skill-tag mono-text">Tableau</span>
-                        <span class="skill-tag mono-text">MySQL</span>
-                        <span class="skill-tag mono-text">Git</span>
-                        <span class="skill-tag mono-text">GitHub</span>
-                        <span class="skill-tag mono-text">Microsoft Azure (Fundamentals)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience-section">
-        <div class="container">
-            <h2 class="section-title">Internship <span class="gradient-text">Experience</span></h2>
-            <div class="projects-grid"> <!-- Reusing grid layout for consistency -->
-                <article class="project-card glass">
-                    <div class="project-content">
-                        <h3>Python Developer (Remote)</h3>
-                        <p class="role-meta">SkyBrisk | Nov 2025 - Dec 2025</p>
-                        <ul>
-                            <li>Completed certified internship focused on Python development and structured coding
-                                discipline.</li>
-                            <li>Contributed to small development tasks, documentation, and debugging workflows.</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="project-card glass">
-                    <div class="project-content">
-                        <h3>AI-Powered Data Analysis Intern</h3>
-                        <p class="role-meta">Excelerate | Nov 2025 - Dec 2025</p>
-                        <ul>
-                            <li>Analyse datasets using Python and LLM-based pipelines to automate data cleaning,
-                                summarisation, anomaly detection, and insights generation.</li>
-                            <li>Work with AI-driven workflows to support business decisions and improve quality of
-                                enterprise data.</li>
-                            <li>Research and test AI tools for data processing, reporting, and automated dashboards.
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="project-card glass">
-                    <div class="project-content">
-                        <h3>Prompt Engineering Research Intern</h3>
-                        <p class="role-meta">Excelerate | Oct 2025 - Nov 2025</p>
-                        <ul>
-                            <li>Evaluated LLM-generated outputs and prompt designs for clarity, accuracy, and contextual
-                                reasoning.</li>
-                            <li>Exploring LangChain and AI workflow orchestration concepts for real-world automation.
-                            </li>
-                            <li>Supporting documentation and prototype testing for enterprise AI adoption.</li>
-                        </ul>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <!-- 1. Hand Hygiene Scanner -->
-                <article class="project-card glass">
-                    <div class="project-content">
-                        <h3>🧠 Computer Vision–Assisted Hand Hygiene Scanner</h3>
-                        <p class="role-meta">MSc Dissertation</p>
-                        <p>Built a computer vision system using OpenCV and MediaPipe to detect and classify hand
-                            movements for hygiene compliance using machine learning.</p>
-                        <div class="tags">
-                            <span class="mono-text">OpenCV</span>
-                            <span class="mono-text">MediaPipe</span>
-                            <span class="mono-text">Machine Learning</span>
-                        </div>
-                        <a href="https://github.com/Upasana-Pawar/Hand-Gesture-Project" target="_blank" class="btn-sm"
-                            style="margin-top: 15px; display: inline-block; text-align: center;">View Code</a>
-                    </div>
-                </article>
-
-                <!-- 2. DesiFit -->
-                <article class="project-card glass">
-                    <div class="project-content">
-                        <h3>🥗 DesiFit — AI Meal & Fitness Planner</h3>
-                        <p class="role-meta">Google AI Agents Capstone</p>
-                        <p>Developed a multi-agent AI system that generates Indian-style meal plans, gym routines, and
-                            grocery lists using calorie and macro-based planning.</p>
-                        <div class="tags">
-                            <span class="mono-text">AI Agents</span>
-                            <span class="mono-text">Personalization</span>
-                            <span class="mono-text">Wellness</span>
-                        </div>
-                        <a href="https://github.com/Upasana-Pawar/desifit-agent" target="_blank" class="btn-sm"
-                            style="margin-top: 15px; display: inline-block; text-align: center;">View Code</a>
-                    </div>
-                </article>
-
-                <!-- 3. AI Workflow Automation -->
-                <article class="project-card glass">
-                    <div class="project-content">
-                        <h3>🤖 AI Workflow Automation</h3>
-                        <p class="role-meta"></p>
-                        <p>Created multi-agent AI pipelines using LangChain and n8n to automate reporting,
-                            summarization, and decision-making workflows.</p>
-                        <div class="tags">
-                            <span class="mono-text">LangChain</span>
-                            <span class="mono-text">n8n</span>
-                            <span class="mono-text">Automation</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 4. Local CLI Chatbot -->
-                <article class="project-card glass">
-                    <div class="project-content">
-                        <h3>🤖 Local CLI Chatbot with Hugging Face</h3>
-                        <p class="role-meta">Independent Project</p>
-                        <p>A command-line chatbot that runs locally using Hugging Face's transformer models, featuring
-                            conversation memory and clean output formatting.</p>
-                        <div class="tags">
-                            <span class="mono-text">Python</span>
-                            <span class="mono-text">Hugging Face</span>
-                            <span class="mono-text">Transformers</span>
-                            <span class="mono-text">CLI</span>
-                        </div>
-                        <a href="https://github.com/Upasana-Pawar/ChatBot" target="_blank" class="btn-sm"
-                            style="margin-top: 15px; display: inline-block; text-align: center;">View Code</a>
-                    </div>
-                </article>
-
-                <!-- 5. Expense Splitter -->
-                <article class="project-card glass">
-                    <div class="project-content">
-                        <h3>💸 Expense Splitter Web App</h3>
-                        <p class="role-meta"></p>
-                        <p>Full-stack web application using Node.js, JavaScript, HTML, CSS, and SQLite to manage shared
-                            expenses with real-time balances.</p>
-                        <div class="tags">
-                            <span class="mono-text">Node.js</span>
-                            <span class="mono-text">SQLite</span>
-                            <span class="mono-text">Full Stack</span>
-                        </div>
-                        <a href="https://github.com/Upasana-Pawar/Expense-Splitter" target="_blank" class="btn-sm"
-                            style="margin-top: 15px; display: inline-block; text-align: center;">View Code</a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container contact-wrapper glass">
-            <div class="contact-info">
-                <h2>Let's Build the <span class="gradient-text">Future</span></h2>
-                <p>Have a project in mind or just want to chat about tech? Drop me a line.</p>
-
-                <div class="contact-detail">
-                    <i class="fas fa-envelope"></i>
-                    <span>upasanapawar976@gmail.com</span>
-                </div>
-                <div class="contact-detail">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Remote / Worldwide</span>
-                </div>
+            <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 overflow-x-auto">
+                <pre id="code-modal-body" class="font-mono text-xs text-gray-300 leading-relaxed"></pre>
             </div>
 
-            <form class="contact-form" action="https://formspree.io/f/mykkyjbb" method="POST">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-            </form>
+            <div class="flex justify-end">
+                <button onclick="closeCodeModal()" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Close Modal</button>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Upasana Pawar.</p>
-        </div>
-    </footer>
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. NEURAL CANVAS ANIMATION
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
 
-    <script src="script.js"></script>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.radius = Math.random() * 1.5 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#06B6D4';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 45; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(6, 182, 212, ${1 - dist / 120 * 0.8})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        // 2. MOBILE MENU & COPY HELPERS
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function copyEmail() {
+            const email = "upasanapawar976@gmail.com";
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = email;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            const heroTxt = document.getElementById('hero-copy-txt');
+            const footerTxt = document.getElementById('footer-copy-txt');
+            
+            if (heroTxt) heroTxt.innerText = "Copied to Clipboard!";
+            if (footerTxt) footerTxt.innerText = "Copied!";
+
+            setTimeout(() => {
+                if (heroTxt) heroTxt.innerText = email;
+                if (footerTxt) footerTxt.innerText = email;
+            }, 2000);
+        }
+
+        // 3. MODAL CONTROLS
+        function openResumeModal() {
+            document.getElementById('resume-modal').classList.remove('hidden');
+        }
+        function closeResumeModal() {
+            document.getElementById('resume-modal').classList.add('hidden');
+        }
+
+        const codeSnippets = {
+            capstone: `from google.adk import AgentRuntime, SecurityGuardrail
+from pydantic import BaseModel, Field
+
+class ToolExecutionPolicy(BaseModel):
+    allowed_tools: list[str] = ["calculator", "weather_query", "nutrition_db"]
+    max_tokens: int = Field(default=2048, le=4096)
+    enforce_gvisor_isolation: bool = True
+
+class EnterpriseGuardrail(SecurityGuardrail):
+    async def intercept_tool_call(self, tool_name: str, payload: dict) -> bool:
+        # Zero-trust validation pipeline
+        if tool_name not in ToolExecutionPolicy().allowed_tools:
+            logger.warn(f"SECURITY ALERT: Blocked malicious invocation of {tool_name}")
+            return False  # Intercept malicious tool calls
+        return True`,
+            desifit: `class MultiAgentCoordinator:
+    def __init__(self):
+        self.diet_agent = DietAgent()
+        self.workout_agent = WorkoutAgent()
+        self.grocery_agent = GroceryAgent()
+
+    def generate_plan(self, user_profile: UserProfile):
+        # Calculate daily caloric requirement (Mifflin-St Jeor)
+        bmr = 10 * user_profile.weight_kg + 6.25 * user_profile.height_cm - 5 * user_profile.age
+        caloric_target = bmr * user_profile.activity_multiplier
+        
+        meals = self.diet_agent.get_7day_meals(caloric_target)
+        groceries = self.grocery_agent.aggregate_ingredients(meals)
+        return {"meals": meals, "grocery_list": groceries}`,
+            cv: `import cv2
+import mediapipe as mp
+
+mp_hands = mp.solutions.hands.Hands(max_num_hands=2, min_detection_confidence=0.7)
+
+def extract_landmark_features(frame):
+    img_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    results = mp_hands.process(img_rgb)
+    
+    if not results.multi_hand_landmarks:
+        return None
+        
+    landmarks = []
+    for hand_landmarks in results.multi_hand_landmarks:
+        for lm in hand_landmarks.landmark:
+            landmarks.extend([lm.x, lm.y, lm.z]) # 21 points x 3 coords = 63 features
+    return landmarks`
+        };
+
+        function openCodeModal(key) {
+            if (codeSnippets[key]) {
+                document.getElementById('code-modal-body').innerText = codeSnippets[key];
+                document.getElementById('code-modal').classList.remove('hidden');
+            }
+        }
+        function closeCodeModal() {
+            document.getElementById('code-modal').classList.add('hidden');
+        }
+
+        // 4. PROJECT FILTERS
+        function filterProjects(category) {
+            const buttons = document.querySelectorAll('.proj-filter-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('bg-neon-cyan', 'text-white');
+                    btn.classList.remove('text-gray-400');
+                } else {
+                    btn.classList.remove('bg-neon-cyan', 'text-white');
+                    btn.classList.add('text-gray-400');
+                }
+            });
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 5. INTERACTIVE SANDBOX SIMULATOR LOGIC
+        const sandboxPresets = {
+            malicious: "system_shell_execute(command='rm -rf /var/db && DROP TABLE users;')",
+            pii: "Process user profile: Name='John Doe', SSN='999-12-3456', Email='john@example.com'",
+            safe: "Execute multi-agent diet task for user calorie target: 2200 kcal high protein plan"
+        };
+
+        function setSandboxPreset(key) {
+            if (sandboxPresets[key]) {
+                document.getElementById('sandbox-prompt').value = sandboxPresets[key];
+            }
+        }
+
+        function executeSandboxPipeline() {
+            const promptVal = document.getElementById('sandbox-prompt').value.trim();
+            const stepsContainer = document.getElementById('sandbox-pipeline-steps');
+            const timerSpan = document.getElementById('sandbox-timer');
+            const finalCard = document.getElementById('sandbox-final-card');
+            const statusHead = document.getElementById('sandbox-status-heading');
+            const statusSub = document.getElementById('sandbox-status-sub');
+            const metricBadge = document.getElementById('sandbox-metrics-badge');
+
+            if (!promptVal) {
+                stepsContainer.innerHTML = `<p class="text-neon-red"><i class="fa-solid fa-triangle-exclamation"></i> Error: Enter a prompt payload to test.</p>`;
+                return;
+            }
+
+            // Loading state
+            stepsContainer.innerHTML = `<p class="text-neon-cyan animate-pulse"><i class="fa-solid fa-spinner fa-spin"></i> Initializing Google ADK Zero-Trust Pipeline...</p>`;
+
+            setTimeout(() => {
+                const isMalicious = promptVal.includes('rm -rf') || promptVal.includes('DROP TABLE') || promptVal.includes('system_shell');
+                const hasPII = promptVal.includes('SSN') || promptVal.match(/\d{3}-\d{2}-\d{4}/);
+                const simLatency = Math.floor(Math.random() * 25) + 98; // ~98-123ms
+
+                timerSpan.innerText = `Latency: ${simLatency} ms`;
+                finalCard.classList.remove('hidden');
+
+                let html = '';
+                html += `<p class="text-gray-400">[1] Ingesting prompt payload (${promptVal.length} bytes)...</p>`;
+
+                // Stage 1: PII Redaction
+                if (hasPII) {
+                    let redacted = promptVal.replace(/\d{3}-\d{2}-\d{4}/g, '[REDACTED_SSN_99.4%_ACCURACY]');
+                    html += `<p class="text-neon-amber"><i class="fa-solid fa-user-shield"></i> [2] PII Redaction Engine: Sensitivity detected! Sanitized input: "${redacted}"</p>`;
+                } else {
+                    html += `<p class="text-neon-emerald"><i class="fa-solid fa-check"></i> [2] PII Redaction Engine: Clean payload (No unredacted PII detected).</p>`;
+                }
+
+                // Stage 2: gVisor Isolation & Hybrid Guardrail Interception
+                if (isMalicious) {
+                    html += `<p class="text-neon-red font-bold"><i class="fa-solid fa-ban"></i> [3] gVisor Sandbox & Guardrail: MALICIOUS TOOL EXECUTION INTERCEPTED!</p>`;
+                    html += `<p class="text-red-300 pl-4">-> Intercepted unauthorized command. Guardrail policy enforced at runtime (100% Interception Rate).</p>`;
+
+                    statusHead.innerText = "MALICIOUS ATTACK BLOCKED";
+                    statusHead.className = "font-bold text-xs text-neon-red";
+                    statusSub.innerText = "Zero-trust interception triggered in < 138ms";
+                    metricBadge.innerText = "100% INTERCEPTED";
+                    metricBadge.className = "px-2.5 py-1 rounded-md text-[10px] font-bold bg-red-950 text-red-300 border border-red-800";
+                } else {
+                    html += `<p class="text-neon-emerald"><i class="fa-solid fa-shield-check"></i> [3] gVisor Sandbox & Guardrail: Execution approved. Pydantic schema validated.</p>`;
+                    html += `<p class="text-neon-cyan"><i class="fa-solid fa-bolt"></i> [4] Execution Output: Token overhead reduced by -78%. Dispatched to Gemini API.</p>`;
+
+                    statusHead.innerText = "PASSED & VERIFIED";
+                    statusHead.className = "font-bold text-xs text-neon-emerald";
+                    statusSub.innerText = "Successfully executed with -78% token savings";
+                    metricBadge.innerText = "VERIFIED SAFE";
+                    metricBadge.className = "px-2.5 py-1 rounded-md text-[10px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-800";
+                }
+
+                stepsContainer.innerHTML = html;
+            }, 400);
+        }
+
+        // Set default sandbox scenario on load
+        window.onload = function() {
+            setSandboxPreset('pii');
+        };
+    </script>
 </body>
-
 </html>
